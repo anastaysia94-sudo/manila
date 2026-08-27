@@ -1,9 +1,13 @@
 {
-  "name": "Manila",
+  "name": "Manila — School Letters & IEP War Room",
   "short_name": "Manila",
-  "start_url": "/",
+  "description": "Decode school letters. Walk into the IEP with a spine.",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "icons": []
+  "background_color": "#f3ead8",
+  "theme_color": "#2a241c",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
 }
