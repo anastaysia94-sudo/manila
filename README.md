@@ -32,6 +32,10 @@ Standard advocacy menu is $129–$1,200. With an approved scan it halves.
 
 The scanner reads the photo on-device (Tesseract from a CDN) and compares text to national program words plus state marks (Medi-Cal, Lone Star, MassHealth…). It does **not** call a state eligibility API in this demo.
 
+### Proof privacy lifecycle
+
+The proof image is processed only in the current browser view. Manila does not upload the image to a server and does not write the raw image or OCR text to `localStorage`; only the resulting access verdict fields are retained. Navigating away rerenders the view and discards the file input. This closes the previously listed proof-retention task for the current client-only architecture.
+
 ## $100 / hour path
 
 You sell the human. Manila is the factory.
@@ -44,7 +48,8 @@ Or sell the OS to advocates later at $79–$149 / month.
 
 ## What production still needs
 
-- Delete uploaded proof after the verdict
+These items are not already-started implementation work in the current client-only demo, so they remain intentionally untouched in this completion pass:
+
 - Real payments
 - Encrypted vault for two parents + one advocate
 - Lawyer-reviewed state deadline tables
