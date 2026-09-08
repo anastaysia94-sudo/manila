@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anastaysia94-sudo.github.io/manila/sitemap.xml
