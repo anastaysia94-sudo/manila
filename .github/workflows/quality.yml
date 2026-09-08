@@ -1,0 +1,45 @@
+name: Manila Quality Gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "*.js"
+      - "*.css"
+      - "manifest.json"
+      - "robots.txt"
+      - "sitemap.xml"
+      - ".github/workflows/quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: JavaScript syntax
+        run: |
+          node --check data.js
+          node --check data-safety-overrides.js
+          node --check app.js
+          node --check sw.js
+      - name: Safety and accessibility contract
+        run: |
+          test -f guide.html
+          test -f robots.txt
+          test -f sitemap.xml
+          grep -q 'skip-link' index.html
+          grep -q 'application/ld+json' index.html
+          grep -q 'data-safety-overrides.js' index.html
+          grep -q 'Federal IDEA baseline only' data-safety-overrides.js
+          grep -q 'not a lawyer' data-safety-overrides.js
+          grep -q 'without unnecessary delay' data-safety-overrides.js
+          grep -q 'decision to change placement' data-safety-overrides.js
